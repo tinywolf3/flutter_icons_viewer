@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'IconsList.dart';
@@ -37,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   IconData _selectedIcon = Icons.circle;
   String _selectedName = '';
   Color _colored = Colors.black;
+  String _colorName = '';
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +64,28 @@ class _MyHomePageState extends State<MyHomePage> {
               const Spacer(),
               Icon(_selectedIcon, color: _colored, size: 64,),
               const SizedBox(width: 10,),
-              Text(_selectedName, style: const TextStyle(fontFamily: '둥근모꼴', fontSize: 24,),),
+              TextButton(
+                child: Text(
+                  _selectedName,
+                  style: const TextStyle(
+                    fontFamily: '둥근모꼴',
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                ),
+                onPressed: () {
+                  String code = 'Icon($_selectedName, color: $_colorName,)';
+                  if (_colorName.isEmpty) {
+                    code = 'Icon($_selectedName)';
+                  }
+                  Clipboard.setData(ClipboardData(text: code,));
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("Copied to the Clipboard.\n$code"),
+                    duration: const Duration(seconds: 1),
+                  ));
+                },
+              ),
+
               const Spacer(),
             ],
           ),
@@ -72,47 +95,80 @@ class _MyHomePageState extends State<MyHomePage> {
               const Spacer(),
               TextButton(
                 child: const Icon(Icons.square, color: Colors.black),
-                onPressed: () => setState(() { _colored = Colors.black; }),
+                onPressed: () => setState(() {
+                  _colorName = '';
+                  _colored = Colors.black;
+                }),
               ),
               TextButton(
                 child: const Icon(Icons.square, color: Colors.grey),
-                onPressed: () => setState(() { _colored = Colors.grey; }),
+                onPressed: () => setState(() {
+                  _colorName = 'Colors.grey';
+                  _colored = Colors.grey;
+                }),
               ),
               TextButton(
                 child: const Icon(Icons.square, color: Colors.red),
-                onPressed: () => setState(() { _colored = Colors.red; }),
+                onPressed: () => setState(() {
+                  _colorName = 'Colors.red';
+                  _colored = Colors.red;
+                }),
               ),
               TextButton(
                 child: const Icon(Icons.square, color: Colors.green),
-                onPressed: () => setState(() { _colored = Colors.green; }),
+                onPressed: () => setState(() {
+                  _colorName = 'Colors.green';
+                  _colored = Colors.green;
+                }),
               ),
               TextButton(
                 child: const Icon(Icons.square, color: Colors.blue),
-                onPressed: () => setState(() { _colored = Colors.blue; }),
+                onPressed: () => setState(() {
+                  _colorName = 'Colors.blue';
+                  _colored = Colors.blue;
+                }),
               ),
               TextButton(
                 child: const Icon(Icons.square, color: Colors.yellow),
-                onPressed: () => setState(() { _colored = Colors.yellow; }),
+                onPressed: () => setState(() {
+                  _colorName = 'Colors.yellow';
+                  _colored = Colors.yellow;
+                }),
               ),
               TextButton(
                 child: const Icon(Icons.square, color: Colors.orange),
-                onPressed: () => setState(() { _colored = Colors.orange; }),
+                onPressed: () => setState(() {
+                  _colorName = 'Colors.orange';
+                  _colored = Colors.orange;
+                }),
               ),
               TextButton(
                 child: const Icon(Icons.square, color: Colors.pink),
-                onPressed: () => setState(() { _colored = Colors.pink; }),
+                onPressed: () => setState(() {
+                  _colorName = 'Colors.pink';
+                  _colored = Colors.pink;
+                }),
               ),
               TextButton(
                 child: const Icon(Icons.square, color: Colors.purple),
-                onPressed: () => setState(() { _colored = Colors.purple; }),
+                onPressed: () => setState(() {
+                  _colorName = 'Colors.purple';
+                  _colored = Colors.purple;
+                }),
               ),
               TextButton(
                 child: const Icon(Icons.square, color: Colors.cyan),
-                onPressed: () => setState(() { _colored = Colors.cyan; }),
+                onPressed: () => setState(() {
+                  _colorName = 'Colors.cyan';
+                  _colored = Colors.cyan;
+                }),
               ),
               TextButton(
                 child: const Icon(Icons.square, color: Colors.indigo),
-                onPressed: () => setState(() { _colored = Colors.indigo; }),
+                onPressed: () => setState(() {
+                  _colorName = 'Colors.indigo';
+                  _colored = Colors.indigo;
+                }),
               ),
               const Spacer(),
             ],
